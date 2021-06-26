@@ -1,0 +1,49 @@
+
+<head>
+    
+    <!-- What to display in browser tab -->
+    <title>{{ title }}</title>
+    
+    {% load static %}
+    {% get_static_prefix as STATIC_URL %} 
+    
+</head>
+
+
+<body>
+
+    {% include "main/includes/header.html" %}
+    {% include "main/includes/navbar.html" %}
+    {% include "main/includes/messages.html" %}
+
+    
+    <div style="padding-top: 150px; padding-left: 100px;">
+        
+        
+        <div class="ui huge header" style="text-align: center; color: gray;">Find the data you need</div>
+        
+        <div class="ui medium header" style="text-align: center; color: gray;">Search hundreds of datasets, dashboards and KPIs. Or browse the <a href="/">data catalog</a></div>
+        
+        <!-- SEARCH BAR -->
+        <div class="ui category search" style="text-align: center;">
+            <div class="ui icon input" style="width: 800px;">
+                <input class="prompt" style="background: #F5F5F1; border-radius: 1.0rem; font-size: 18px;" type="text" placeholder="Search for things like Opportunities, Sales, Marketing, etc.">
+                <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+        </div>
+        
+        
+        <div class="ui medium header" style="color: gray;">Apps used by your team members</div>
+        
+        <div class="ui medium header" style="color: gray;">Most popular</div>
+        
+        <div class="ui medium header" style="color: gray;">Top rated</div>
+        
+        
+    </div>
+  
+    {% include "main/includes/footer.html" %}
+  
+</body>
+

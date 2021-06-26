@@ -1,0 +1,46 @@
+<head>
+    {% load static %}
+    
+    
+    <!-- Compiled and minified CSS -->
+    <!-- <link href="{% static 'main/css/materialize.css' %}" rel="stylesheet"> -->
+    
+    
+    <!-- MATERIALIZE CDN -->
+    <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <!-- Compiled and minified JavaScript -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <!-- Materialize icons -->
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    
+    <!-- semantic ui  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    
+    
+    
+</head>
+
+
+<body>
+    
+
+        {% block content %}
+        {% endblock %}
+
+    
+</body>
+
+ 
+ <script>
+
+    $(document).ready(function(){
+        $('.ui.dropdown') .dropdown();
+    });
+    
+</script> 
