@@ -17,32 +17,85 @@
     {% include "main/includes/messages.html" %}
 
     
-    <div style="padding-top: 150px; padding-left: 100px;">
+    <div style="padding-top: 150px; padding-left: 350px; padding-right: 350px;">
         
         
         <div class="ui huge header" style="text-align: center; color: gray;">Find the data you need</div>
         
-        <div class="ui medium header" style="text-align: center; color: gray;">Search hundreds of datasets, dashboards and KPIs. Or browse the <a href="/">data catalog</a></div>
+        <div class="ui medium header" style="text-align: center; color: gray;">Search hundreds of datasets, dashboards and KPIs. Or browse the <a href="https://schneider-electric.collibra.com/dashboard">data catalog</a></div>
+        <!-- https://schneider-electric.collibra.com/search?q=opportunities -->
+        
+        
         
         <!-- SEARCH BAR -->
         <div class="ui category search" style="text-align: center;">
             <div class="ui icon input" style="width: 800px;">
-                <input class="prompt" style="background: #F5F5F1; border-radius: 1.0rem; font-size: 18px;" type="text" placeholder="Search for things like Opportunities, Sales, Marketing, etc.">
+                <input class="prompt" style="background: #F0F0F0; border-radius: 1.0rem; font-size: 18px;" type="text" placeholder="Search for things like Opportunities, Sales, Marketing, etc.">
                 <i class="search icon"></i>
             </div>
             <div class="results"></div>
         </div>
         
+        <br><br><br>
         
-        <div class="ui medium header" style="color: gray;">Apps used by your team members</div>
+        <!-- Categories and Cards -->
         
-        <div class="ui medium header" style="color: gray;">Most popular</div>
+        {% for categ in app_categories %}
+            <div>
+            
+                <div class="ui medium header" style="color: gray;">{{ categ.category_name }}</div>
+                
+                <div class="ui four column grid">
+                {% for app in apps %}
+                
+                    
+                    {% if app.app_category_id == categ.id %}
+                        
+                        
+                        <div class="column">
+                            <div class="ui card">
+                              <div class="content">
+                                <div class="right floated meta">14h</div>
+                                <img class="ui avatar image" src="/images/avatar/large/elliot.jpg"> {{ app.app_name }}
+                              </div>
+                              <div class="image">
+                                <img>
+                              </div>
+                              <div class="content">
+                                <span class="right floated">
+                                  <i class="heart outline like icon"></i>
+                                  17 likes
+                                </span>
+                                <i class="comment icon"></i>
+                                3 comments
+                              </div>
+                              <div class="extra content">
+                                <div class="ui large transparent left icon input">
+                                  <i class="heart outline icon"></i>
+                                  <input type="text" placeholder="Add Comment...">
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        
+                    {% endif %}    
+                
+                {% endfor %}
+                </div>
+                <br>
+                <a href="" style="color: Blue; float: right;">More</a>
+                <br><br>
+                    
+            </div>
+            
+        {% endfor %}
         
-        <div class="ui medium header" style="color: gray;">Top rated</div>
         
         
     </div>
-  
+    
+    <br><br>
+    
     {% include "main/includes/footer.html" %}
   
 </body>
