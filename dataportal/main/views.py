@@ -12,29 +12,38 @@ from .models import App, AppCategory
 
 # class Homepage(LoginRequiredMixin, View): # NEED TO IMPLEMENT AUTHENTICATION !!!
 class Homepage(View):
-    login_url = "/login/"
-    redirect_field_name = "redirect_to"
-    title = "Data Portal Home"
-    team_apps = [
-            "KPI1",
-            "KPI2",
-            "KPI3",
-            "App1",
-            "App2",
-            "App3",
-            ]
-    
-    apps = App.objects.all() #.values_list('app_name', 'app_category')
-    app_categories = AppCategory.objects.all()
-    
-    def get(self, request):
-        context = {}
-        context["title"] = self.title
-        context["apps"] = self.apps
-        context["app_categories"] = self.app_categories
-        
-        return render(
-            request=request,
-            template_name="main/homepage.html",
-            context=context,
-            )
+	login_url = "/login/"
+	redirect_field_name = "redirect_to"
+	title = "Test View"
+	apps = App.objects.all() #.values_list('app_name', 'app_category')
+	app_categories = AppCategory.objects.all()
+	
+	def get(self, request):
+		context = {}
+		context["title"] = self.title
+		context["apps"] = self.apps
+		context["app_categories"] = self.app_categories
+		
+		return render(
+			request=request,
+			template_name="main/homepage.html",
+			context=context,
+		)
+
+
+class Test(View):
+	title = "Test View"
+	apps = App.objects.all() #.values_list('app_name', 'app_category')
+	app_categories = AppCategory.objects.all()
+	
+	def get(self, request):
+		context = {}
+		context["title"] = self.title
+		context["apps"] = self.apps
+		context["app_categories"] = self.app_categories
+		
+		return render(
+			request=request,
+			template_name="main/test.html",
+			context=context,
+		)

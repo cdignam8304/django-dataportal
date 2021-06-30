@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import Homepage
+from .views import Homepage, Test
 
 app_name = "main" # used for creating custom urls, so don't have to hard code urls
 
 urlpatterns = [
     path("", Homepage.as_view(), name="homepage"),
+	path("test/", Test.as_view(), name="test"),
 ]
 
 
