@@ -14,7 +14,7 @@ from .models import App, AppCategory
 class Homepage(View):
 	login_url = "/login/"
 	redirect_field_name = "redirect_to"
-	title = "Test View"
+	title = "Data Portal Home"
 	apps = App.objects.all() #.values_list('app_name', 'app_category')
 	app_categories = AppCategory.objects.all()
 	
@@ -31,8 +31,8 @@ class Homepage(View):
 		)
 
 
-class Test(View):
-	title = "Test View"
+class CustomDashboard(View):
+	title = "Create Custom Dashboard"
 	apps = App.objects.all() #.values_list('app_name', 'app_category')
 	app_categories = AppCategory.objects.all()
 	
@@ -41,6 +41,20 @@ class Test(View):
 		context["title"] = self.title
 		context["apps"] = self.apps
 		context["app_categories"] = self.app_categories
+		
+		return render(
+			request=request,
+			template_name="main/custom_dashboard.html",
+			context=context,
+		)
+
+
+class Test(View):
+	title = "Test View"
+	
+	def get(self, request):
+		context = {}
+		context["title"] = self.title
 		
 		return render(
 			request=request,

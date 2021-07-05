@@ -1,222 +1,37 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<html>
+ <head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['gauge']});
+    google.charts.setOnLoadCallback(drawGauge);
 
-	<!-- scripts for new jquery sidenav -->
-	<script>
-	  $( function() {
-		$( "#accordion0" ).accordion({
-		  collapsible: true,
-		  active: 0,
-		});
-	  } );
-	  
-		$( function() {
-		$( "#accordion1" ).accordion({
-		  collapsible: true,
-		  active: 0,
-		});
-	  } );
-	  
-		$( function() {
-		$( "#accordion2" ).accordion({
-		  collapsible: true,
-		  active: 0,
-		});
-	  } );
-	  
-	  $( function() {
-		$( "#accordion3" ).accordion({
-		  collapsible: true,
-		  active: 0,
-		});
-	  } );
-	</script>
-	
+    var gaugeOptions = {min: 0, max: 280, yellowFrom: 200, yellowTo: 250,
+      redFrom: 250, redTo: 280, minorTicks: 5};
+    var gauge;
 
+    function drawGauge() {
+      gaugeData = new google.visualization.DataTable();
+      gaugeData.addColumn('number', 'Engine');
+      gaugeData.addColumn('number', 'Torpedo');
+      gaugeData.addRows(2);
+      gaugeData.setCell(0, 0, 120);
+      gaugeData.setCell(0, 1, 80);
 
-	<!-- style for current sidenav -->
-	<style>
-		
-		.sidenav {
-		  height: 100%;
-		  width: 160px;
-		  position: fixed;
-		  z-index: 1;
-		  top: 0;
-		  left: 0;
-		  /* background-color: #111; */
-		  overflow-x: hidden;
-		  padding-top: 150px;
-		  padding-left: 40px;
-		  border: 0px !important;
-		  font-size: 16px !important;
-		}
+      gauge = new google.visualization.Gauge(document.getElementById('gauge_div'));
+      gauge.draw(gaugeData, gaugeOptions);
+    }
 
-		.sidenav a {
-		  padding: 6px 8px 6px 0px;
-		  text-decoration: none;
-		  font-size: 14px !important;
-		  color: #818181;
-		  display: block;
-		}
-
-		.sidenav a:hover {
-		  /* color: #f1f1f1; */
-		}
-		
-		.main {
-		  margin-left: 160px; /* Same as the width of the sidenav */
-		  padding-left: 300px;
-		  padding-right: 300px;
-		  padding-top: 150px;
-		  padding-bottom: 0px;
-		}
-
-	</style>  
-
-</head>
-
-
-<body>	
-	
-	{% include "main/includes/header.html" %}
-	{% include "main/includes/navbar.html" %}
-
-	<!-- new jquery sidebar -->
-	
-	<!-- <div class="sidenav ui vertical menu borderless following fluid accordian text"> -->
-	<div class="sidenav ui vertical menu borderless">
-		
-		<div id="accordion0">
-		  <h3 style="color: gray; background: white; border: 0px; font-weight: bold; text-align: left;">Recommended</h3>
-		  <div style="border: 0px; padding-top: 0px; padding-left: 26px;">
-			<p style="text-align: left; margin-bottom: 0px;"><a href="/">Link 1</a></p>
-			<p style="text-align: left; margin-bottom: 0px;"><a href="/">Link 2</a></p>
-		  </div>
-		</div>
-
-		<br>
-
-		<div id="accordion1">
-		  <h3 style="color: gray; background: white; border: 0px; font-weight: bold; text-align: left;">Top Rated</h3>
-		  <div style="border: 0px; padding-top: 0px; padding-left: 26px;">
-			<p style="text-align: left; margin-bottom: 0px;"><a href="/">Link 1</a></p>
-			<p style="text-align: left; margin-bottom: 0px;"><a href="/">Link 2</a></p>
-		  </div>
-		</div>
-		
-		<br>
-		
-		<div id="accordion2">
-		  <h3 style="color: gray; background: white; border: 0px; font-weight: bold; text-align: left;">Recent</h3>
-		  <div style="border: 0px; padding-top: 0px; padding-left: 26px;">
-			<p style="text-align: left; margin-bottom: 0px;"><a href="/">Link 1</a></p>
-			<p style="text-align: left; margin-bottom: 0px;"><a href="/">Link 2</a></p>
-		  </div>
-		</div>
-		
-		<br>
-		
-		<div id="accordion3">
-		  <h3 style="color: gray; background: white; border: 0px; font-weight: bold; text-align: left;">Categories</h3>
-		  <div style="border: 0px; padding-top: 0px; padding-left: 26px;">
-			<p style="text-align: left; margin-bottom: 0px;"><a href="/">Link 1</a></p>
-			<p style="text-align: left; margin-bottom: 0px;"><a href="/">Link 2</a></p>
-		  </div>
-		</div>
-	
-	</div>
-	
-	
-	
-	
-	<!-- <div style="padding-top: 150px; padding-left: 350px; padding-right: 350px;"> -->
-    <div class="main" style="">
-        
-        
-        <div class="ui huge header" style="text-align: center; color: gray;">Find the data you need</div>
-        
-        <div class="ui medium header" style="text-align: center; color: gray;">Search hundreds of datasets, dashboards and KPIs. Or browse the <a href="https://schneider-electric.collibra.com/dashboard">data catalog</a></div>
-        <!-- https://schneider-electric.collibra.com/search?q=opportunities -->
-        
-        
-        
-        <!-- SEARCH BAR -->
-        <div class="ui category search" style="text-align: center;">
-            <div class="ui icon input" style="width: 800px;">
-                <input class="prompt" style="background: #F0F0F0; border-radius: 1.0rem; font-size: 18px;" type="text" placeholder="Search for things like Opportunities, Sales, Marketing, etc.">
-                <i class="search icon"></i>
-            </div>
-            <div class="results"></div>
-        </div>
-        
-        <br><br><br>
-        
-        <!-- Categories and Cards -->
-        
-        {% for categ in app_categories %}
-            <div>
-            
-                <div class="ui medium header" style="color: gray;">{{ categ.category_name }}</div>
-                
-                <div class="ui four column grid">
-                {% for app in apps %}
-                
-                    
-                    {% if app.app_category_id == categ.id %}
-                        
-                        
-                        <div class="column">
-                            <div class="ui card">
-                              <div class="content">
-                                <div class="right floated meta">14h</div>
-                                <img class="ui avatar image" src="/images/avatar/large/elliot.jpg"> {{ app.app_name }}
-                              </div>
-                              <div class="image">
-                                <img>
-                              </div>
-                              <div class="content">
-                                <span class="right floated">
-                                  <i class="heart outline like icon"></i>
-                                  17 likes
-                                </span>
-                                <i class="comment icon"></i>
-                                3 comments
-                              </div>
-                              <div class="extra content">
-                                <div class="ui large transparent left icon input">
-                                  <i class="heart outline icon"></i>
-                                  <input type="text" placeholder="Add Comment...">
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                        
-                    {% endif %}    
-                
-                {% endfor %}
-                </div>
-                <br>
-                <a href="" style="color: Blue; float: right;">More</a>
-                <br><br>
-                    
-            </div>
-            
-        {% endfor %}
-        
-        
-        
-        
-    </div>
-
-	
-</body>
+    function changeTemp(dir) {
+      gaugeData.setValue(0, 0, gaugeData.getValue(0, 0) + dir * 25);
+      gaugeData.setValue(0, 1, gaugeData.getValue(0, 1) + dir * 20);
+      gauge.draw(gaugeData, gaugeOptions);
+    }
+  </script>
+ </head>
+ <body>
+  <div id="gauge_div" style="width:280px; height: 140px;"></div>
+  <input type="button" value="Go Faster" onclick="changeTemp(1)" />
+  <input type="button" value="Slow down" onclick="changeTemp(-1)" />
+ </body>
 </html>

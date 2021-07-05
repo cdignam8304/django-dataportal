@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Draggable - Snap to element or grid</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  
+  <style>
+	.draggable { width: 90px; height: 80px; padding: 5px; float: left; margin: 0 10px 10px 0; font-size: .9em; }
+	.ui-widget-header p, .ui-widget-content p { margin: 0; }
+	#snaptarget { height: 700px;
+			width: 1000px;
+			margin-left: 0px; /* Same as the width of the sidenav */
+			margin-right: 0px;
+			padding-left: 0px;
+			padding-right: 0px;
+			padding-top: 0px;
+			padding-bottom: 0px;
+			background-color: grey;
+			}
+	
+	#containment-wrapper {
+		padding-left: 350px;
+		padding-top: 100px;
+	}
+					
+	
+  </style>
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#draggable" ).draggable({ snap: true });
+    $( "#draggable2" ).draggable({ snap: ".ui-widget-header" });
+    $( "#draggable3" ).draggable({ snap: ".ui-widget-header", snapMode: "outer" });
+    $( "#draggable4" ).draggable({ grid: [ 20, 20 ] });
+    $( "#draggable5" ).draggable({ grid: [ 80, 80 ] });
+	$( "#draggable6" ).draggable({ containment: "parent", scroll: false });
+  } );
+  </script>
+  
+  
+  
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	  <script type="text/javascript">
+		google.charts.load('current', {'packages':['gauge']});
+		google.charts.setOnLoadCallback(drawGauge);
+
+		var gaugeOptions = {min: 0, max: 280, yellowFrom: 200, yellowTo: 250,
+		  redFrom: 250, redTo: 280, minorTicks: 5};
+		var gauge;
+
+		function drawGauge() {
+		  gaugeData = new google.visualization.DataTable();
+		  gaugeData.addColumn('number', 'Engine');
+		  gaugeData.addColumn('number', 'Torpedo');
+		  gaugeData.addRows(2);
+		  gaugeData.setCell(0, 0, 120);
+		  gaugeData.setCell(0, 1, 80);
+
+		  gauge = new google.visualization.Gauge(document.getElementById('gauge_div'));
+		  gauge.draw(gaugeData, gaugeOptions);
+		}
+
+		function changeTemp(dir) {
+		  gaugeData.setValue(0, 0, gaugeData.getValue(0, 0) + dir * 25);
+		  gaugeData.setValue(0, 1, gaugeData.getValue(0, 1) + dir * 20);
+		  gauge.draw(gaugeData, gaugeOptions);
+		}
+	  </script>
+  
+  
+  
+  
+  
+  
+</head>
+
+
+<body>
+
+	<div id="containment-wrapper">
+		<div id="snaptarget" class="ui-widget-header">
+			<p>I&apos;m a snap target</p>
+			<div id="draggable6" class="draggable ui-widget-content">
+				<p>I&apos;m contained within the box</p>
+			 </div>
+		</div>
+	</div>
+	 
+	<br style="clear:both">
+	 
+	<div id="draggable" class="draggable ui-widget-content">
+	  <p>Default (snap: true), snaps to all other draggable elements</p>
+	</div>
+	 
+	<div id="draggable2" class="draggable ui-widget-content">
+	  <p>I only snap to the big box</p>
+	</div>
+	 
+	<div id="draggable3" class="draggable ui-widget-content">
+	  <p>I only snap to the outer edges of the big box</p>
+	</div>
+	 
+	<div id="draggable4" class="draggable ui-widget-content">
+	  <p>I snap to a 20 x 20 grid</p>
+	</div>
+	 
+	<div id="draggable5" class="draggable ui-widget-content">
+	  <p>I snap to a 80 x 80 grid</p>
+	  <div id="gauge_div" style="width:280px; height: 140px;"></div>
+	  <input type="button" value="Go Faster" onclick="changeTemp(1)" />
+	  <input type="button" value="Slow down" onclick="changeTemp(-1)" />
+	</div>
+
+
+
+
+</body>
+</html>
